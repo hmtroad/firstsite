@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html>
+<head>
+    <title>
+        You have seen your self info.
+    </title>
+    <style>
+        div {
+            left:50%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        Now you are in the self info page.
+    </div>
+    <div>
+        Your name:{{user.name}}
+    </div>
+    <div>
+        Your password: {{user.password}}
+    </div>
+    <div>
+        Your Age: {{user.age}}
+    </div>
+    <div>
+        Your Major: {{user.major}}
+    </div>
+</body>
+</html>
+

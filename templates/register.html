@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html>
+<head>
+<meta charset="utf-8">
+<head>
+    <style>
+    </style>
+</head>
+<body>
+    <h1>
+    好一似食尽鸟投林,落得片白茫茫大地真干净
+    </h1>
+    <form action="register" method="POST">
+        {% csrf_token %}
+        <div><label>名字</label><input type="text" name="name"></div>
+        <div><label>专业</label><input type="text" name="major"></div>
+        <div><label>年龄</label><input type="text" name="age"></div>
+        <div><label>年级</label><input type="text" name="grade"></div>
+        <div><label>密码</label><input type="password" name="password"></div>
+        <div><input type="submit" value="注册"></div>
+    </form>
+</body>
+</html>

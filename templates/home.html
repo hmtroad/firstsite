@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+ {%load staticfiles%}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>主页面</title>
+</head>
+<style type="text/css">
+    .welcome {
+        width:500px;
+        text-align:center;
+    }
+    
+    a:link, a:visited {
+    	color:green;
+    }
+    a:hover, a:active {
+    	font-size:1.2em;
+        color:red;
+    }
+    #tool_list {
+    	font-family:KaiTi;
+		font-size:1.2em;
+        padding:10px;
+    }
+    a {
+    	text-decoration:none;
+    }
+</style>
+<body>
+<body>
+     <div class="welcome">
+          欢迎来到社团管理系统! {{username}} {{password}}
+     </div>
+     <div>
+          <span>
+               You are here.<br>
+          </span>
+      </div>
+      <div id="tool_list">
+      	<a href="self_info">个人信息</a>
+      </div>
+</body>
+</body>
+
+</html>
