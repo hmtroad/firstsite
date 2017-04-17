@@ -28,4 +28,5 @@ urlpatterns = [
     # need cookie?
     url(r'^self_info$', self_info, name="self_info"),
     url(r'^register$', register, name="register"),
+    url(r'selfmaster ',)
 ]
