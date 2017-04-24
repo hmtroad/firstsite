@@ -16,17 +16,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from firstapp.views import first_try, index, mainpage, home
+from firstapp.views import mainpage, home
 from firstapp.views import self_info, register
+from firstapp.views import watch_activity, inform
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^ft/', first_try),
     url(r'^$', mainpage, name="mainpage"),
-    url(r'^index/', index, name="index"),
     url(r'^home', home, name="home"),
     # need cookie?
     url(r'^self_info$', self_info, name="self_info"),
     url(r'^register$', register, name="register"),
-    # url(r'selfmaster ',)
+    url(r'^activity$', watch_activity, name="watch_activity"),
+    url(r'^inform$', inform, name="inform"),
 ]

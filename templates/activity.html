@@ -3,14 +3,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>主页面</title>
+<title>我的活动</title>
 </head>
 <style type="text/css">
     .welcome {
         width:500px;
         text-align:center;
     }
-    
+
     a:link, a:visited {
     	color:green;
     }
@@ -30,18 +30,38 @@
 <body>
 <body>
      <div class="welcome">
-          欢迎来到社团管理系统! {{username}} {{password}}
      </div>
+     <%for activity in activities%>
      <div>
+         <span>
+             活动名称
+         </span>
           <span>
-               You are here.<br>
+            {{activity.act_name}}
           </span>
       </div>
+     <div>
+         <span>
+             举办方
+         </span>
+         <span>
+            {{activity.hoster}}
+         </span>
+     </div>
+     <div>
+         <span>
+             简介
+         </span>
+         <span>
+             {{activity.introduction}}
+         </span>
+     </div>
+     <%endfor%>
       <div id="tool_list">
       	<a href="self_info">个人信息</a>
       </div>
       <div id="activity">
-      	<a href="activity">查看活动</a>
+      	<a href="acitivity">查看活动</a>
       </div>
       <div id="inform">
       	<a href="inform">通知</a>

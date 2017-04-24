@@ -1,39 +1,15 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.shortcuts import render_to_response
-from firstapp.models import People, Article
+from firstapp.models import People, Activity
 from firstapp.forms import LoginForm
 from django import forms
 from django.template import Context, Template
 # Create your views here.
 
 
-def first_try(request):
-    person = People(name='Spock', job='officer')
-    html_string = '''
-    <html>
-        <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantics.css">
-        </head>
-        <body>
-        <h1 class="ui center aligned icon header">
-            <i class="hand spock icon "></i>
-            Hello {{person.name}}
-        </h1>
-        </body>
-    </html>'''
-    t = Template(html_string)
-    c = Context({'person':person})
-    web_page = t.render(c)
-    return HttpResponse(web_page)
-
 def mainpage(request):
     return render(request, 'homepage.html')
 
-def index(request):
-    context = {}
-    article_list = Article.objects.all()
-    context['article_list'] = article_list
-    index_page = render(request, 'homepage.html', context)
-    return index_page
 
 def home(request):
     username = 'not login'
@@ -63,6 +39,7 @@ def home(request):
     return render_to_response('home.html', {'username': username})
     # return render(request, 'home.html', {'username': username, 'password': password})
 
+
 def self_info(request):
     # return the info by the cookie's, if not cookies?
     # https://www.tutorialspoint.com/django/django_cookies_handling.htm
@@ -76,7 +53,8 @@ def self_info(request):
         dbuser = dbuser[0]
         return render(request, 'self_info.html', {'user':dbuser})
 
-#Can we not use redirect?
+
+# Can we not use redirect?
 def register(request):
     if request.POST.get('name'):
         postinfo = request.POST
@@ -89,3 +67,14 @@ def register(request):
             newuser.save()
             return HttpResponse("Register Success")
     return render(request, 'register.html')
+
+
+def watch_activity(request):
+    activities = Activity.objects().All()
+    print(activities)
+    return render('activity.html', {'activities':activities})
+
+
+def inform(request):
+
+    return HttpResponse('inform.html')
