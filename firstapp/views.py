@@ -1,7 +1,12 @@
+# -----------coding: utf-8-----------
 from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from firstapp.models import People, Activity
+from firstapp.models import Inform
 from firstapp.forms import LoginForm
+import datetime
+from django.contrib.auth.signals import user_logged_in
 from django import forms
 from django.template import Context, Template
 # Create your views here.
@@ -36,7 +41,11 @@ def home(request):
     #
     else:
         myLoginForm = LoginForm()
-    return render_to_response('home.html', {'username': username})
+    response = render_to_response('home.html', {'username': username})
+    # avoid the situation:    确认重新提交表单
+    response.set_cookie('last_connection', datetime.datetime.now())
+    response.set_cookie('username', datetime.datetime.now())
+    return response
     # return render(request, 'home.html', {'username': username, 'password': password})
 
 
@@ -68,13 +77,24 @@ def register(request):
             return HttpResponse("Register Success")
     return render(request, 'register.html')
 
-
 def watch_activity(request):
-    activities = Activity.objects().All()
-    print(activities)
-    return render('activity.html', {'activities':activities})
+    activities = Activity.objects.all()
+    #如何解决,如果Activity为空,会有template error, 如果不空的话,没有办法在模板里使用act.name
+    #或者要用模板产生一个非正常的act,但是这样显示很奇怪
+    if activities:
+        return render(request, 'activity.html', {'activities': activities})
+    else:
+        return render_to_response('activity.html')
 
 
 def inform(request):
+    dic = {}
+    if 'username' in request.COOKIES and 'last_connection' in request.COOKIES:
+        username = request.COOKIES['username']
+        informs = Inform.objects
+        if informs:
+            informs = informs.filter(accepter = username)
+        dic = {'informs': informs}
+    return render(request, 'inform.html', dic)
 
-    return HttpResponse('inform.html')
+

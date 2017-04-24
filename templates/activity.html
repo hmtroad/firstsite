@@ -14,15 +14,6 @@
     a:link, a:visited {
     	color:green;
     }
-    a:hover, a:active {
-    	font-size:1.2em;
-        color:red;
-    }
-    div {
-    	font-family:KaiTi;
-		font-size:1.2em;
-        padding:10px;
-    }
     a {
     	text-decoration:none;
     }
@@ -30,8 +21,11 @@
 <body>
 <body>
      <div class="welcome">
+         Hello, how should I call you?
+         A magical contest is being held now.
+         But I bet you will lose this one in thousand year chance.
      </div>
-     <%for activity in activities%>
+     {% for activity in activities %}
      <div>
          <span>
              活动名称
@@ -56,19 +50,14 @@
              {{activity.introduction}}
          </span>
      </div>
-     <%endfor%>
-      <div id="tool_list">
-      	<a href="self_info">个人信息</a>
-      </div>
-      <div id="activity">
-      	<a href="acitivity">查看活动</a>
-      </div>
-      <div id="inform">
-      	<a href="inform">通知</a>
-      </div>
-      <div id="logout">
-      	<a href="logout">退出</a>
-      </div>
+
+     <form action="join_activity" method="POST">
+         {% csrf_token %}
+         <div>
+
+         </div>
+     </form>
+     {% endfor %}
 </body>
 </body>
 

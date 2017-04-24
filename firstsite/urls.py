@@ -23,10 +23,12 @@ from firstapp.views import watch_activity, inform
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', mainpage, name="mainpage"),
-    url(r'^home', home, name="home"),
+    url(r'^home$', home, name="home"),
+    url(r'^home', mainpage, name="mainpage"),
     # need cookie?
     url(r'^self_info$', self_info, name="self_info"),
     url(r'^register$', register, name="register"),
     url(r'^activity$', watch_activity, name="watch_activity"),
     url(r'^inform$', inform, name="inform"),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 ]

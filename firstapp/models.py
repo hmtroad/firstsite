@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-
+import sys
+reload(sys)
+sys.setdefaultencoding("utf8")
 
 class People(models.Model):
     # blank is for form, null is for database
@@ -28,11 +30,14 @@ class Activity(models.Model):
     act_name = models.CharField(null= True, blank = True, max_length = 200)
     act_address = models.CharField(null = True, blank = True, max_length = 200)
     introduction = models.CharField(null = True, blank = True, max_length=500)
+    def __str__(self):
+        return self.act_name
 
 class Passage(models.Model):
     content = models.CharField(null=True, blank=True, max_length=200)
     title = models.CharField(null=True, blank=True, max_length=200)
     writer = models.TextField(null=True, blank=True)
+    finished = models.BooleanField(default=False)
 
 class Inform(models.Model):
     sender = models.ForeignKey(People, on_delete=models.CASCADE)
